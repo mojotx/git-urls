@@ -1,7 +1,7 @@
 # git-urls
 
-[![CI](https://github.com/mojotx/git-urls/actions/workflows/ci.yml/badge.svg)](https://github.com/mojotx/git-urls/actions/workflows/ci.yml)
-[![CodeQL](https://github.com/mojotx/git-urls/actions/workflows/codeql.yml/badge.svg)](https://github.com/mojotx/git-urls/actions/workflows/codeql.yml)
+[![CI](https://github.com/mojotx/git-urls/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/mojotx/git-urls/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/mojotx/git-urls/actions/workflows/codeql.yml/badge.svg?branch=master)](https://github.com/mojotx/git-urls/actions/workflows/codeql.yml)
 [![Go Reference](https://pkg.go.dev/badge/github.com/mojotx/git-urls.svg)](https://pkg.go.dev/github.com/mojotx/git-urls)
 
 Docs: [pkg.go.dev/github.com/mojotx/git-urls](https://pkg.go.dev/github.com/mojotx/git-urls?tab=overview)
