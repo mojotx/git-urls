@@ -239,15 +239,22 @@ func TestRegex(t *testing.T) {
 		t.Logf("url len is %d, function took %+v", len(url), elapsed)
 	}
 
-	// First case is 7909 bytes which should still be fast
-	runTimingTest(`https://=`+strings.Repeat(`/`, 7900), false)
+	validPrefix := `git@host.xz:`
 
-	// Second case is 190,000,000 bytes which should be too slow
-	runTimingTest(`https://=`+strings.Repeat(`/`, 190000000), true)
+	// First case is just under the limit and should still be fast
+	runTimingTest(validPrefix+strings.Repeat(`a`, maxUrlLen-len(validPrefix)-1), false)
 
-	// Real URL
-	runTimingTest(`https://stackoverflow.com/q/417142/31319`, false)
+	// Second case is at the limit and should fail before running the regexp
+	runTimingTest(validPrefix+strings.Repeat(`a`, maxUrlLen-len(validPrefix)), true)
 
-	// Another real URL
-	runTimingTest(`https://github.com/whilp/git-urls.git`, false)
+	// Real SCP-like URL
+	runTimingTest(`git@github.com:whilp/git-urls.git`, false)
+
+	// SCP-like URL with a query string
+	runTimingTest(`git@github.com:whilp/git-urls.git?ref=main`, false)
+}
+
+func TestParseScpRejectsTrailingTextWithoutQuerySeparator(t *testing.T) {
+	_, err := ParseScp(`git@github.com:whilp/git-urls.git#main`)
+	assert.Error(t, err)
 }
